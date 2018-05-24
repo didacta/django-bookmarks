@@ -11,3 +11,11 @@
 {% else %}
 <p>No Bookmarks</p>
 {% endif %}
+
+
+<h2> New Bookmark</h2>
+
+<form method="POST" class="bookmark-form">
+  {% csrf_token %} {{form.as_p }}
+  <button type="submit" class="save btn btn-default"> Save </button>
+</form>
