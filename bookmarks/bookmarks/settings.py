@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'bookmark',
     'notes',
     'rest_framework',
+    'graphene_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -129,4 +130,10 @@ REST_FRAMEWORK = {
         # or allow read-only access for unauthenticated users
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
     ]
+}
+
+
+#GRAPHENE
+GRAPHENE = {
+    'SCHEMA': 'notes.schema.schema' #dir.filename.varname
 }
