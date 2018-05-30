@@ -1,7 +1,7 @@
-from rest_framkework import serializers, viewsets
+from rest_framework import serializers, viewsets
 from .models import Note
 
-class NoteSerializer(serializers.HyperLinkedModelSerializer):
+class NoteSerializer(serializers.HyperlinkedModelSerializer):
   def create(self, validated_data):
       user: self.context['request'].user
 
@@ -9,7 +9,7 @@ class NoteSerializer(serializers.HyperLinkedModelSerializer):
       return note
 
   class Meta: 
-    model = NoteSerializer
+    model = Note
     fields = ('title', 'content')
 
 class NoteViewSet(viewsets.ModelViewSet):
