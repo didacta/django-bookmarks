@@ -22,6 +22,6 @@ class NoteViewSet(viewsets.ModelViewSet):
       user = self.request.user
       
       if user.is_anonymous:
-          return Note.objects.none()
+          return Note.objects.all()
       else:
           return Note.objects.filter(user=user)
