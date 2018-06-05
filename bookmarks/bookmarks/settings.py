@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast = bool)
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'bookmark',
     'notes',
     'rest_framework',
+    'rest_framework.authtoken',
     'graphene_django',
     'corsheaders',
     'django.contrib.admin',
@@ -124,23 +125,30 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#CORS ORIGIN 
+# CORS ORIGIN
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000/'
 )
 
 # Django REST framework
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         # Use Django's standard django.contrib.auth permission,
         # or allow read-only access for unauthenticated users
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-    ]
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
 }
 
 
-#GRAPHENE
+# GRAPHENE
 GRAPHENE = {
-    'SCHEMA': 'notes.schema.schema' #dir.filename.varname
+    'SCHEMA': 'notes.schema.schema'  # dir.filename.varname
 }

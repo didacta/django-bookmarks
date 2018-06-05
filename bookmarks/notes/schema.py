@@ -12,7 +12,7 @@ class Note(DjangoObjectType):
 
 
 class Query(graphene.ObjectType):
-    notes = graphene.List(Note)
+    all_notes = graphene.List(Note)
 
     def resolve_notes(self, info):
         """Decide which notes to return."""
